@@ -1,23 +1,19 @@
 <?php
-//$counter = 0;
-//
-//function gcd($a, $b) {
-//    if ($b == 0) return $a;
-//    global $counter;
-//    $counter++;
-//    return gcd($b, $a%$b);
-//}
-//    list($a, $b) = explode(" ", fgets(STDIN));
-//    $ans = gcd($a, $b);
-//    echo("$counter");
+$S = trim(fgets(STDIN));
+$As = str_split($S);
+$all = count($As);
+$num = array_count_values($As);
+$odd = 0;
 
-
-$a = 1;
-$b = 1;
-$N = trim(fgets(STDIN));
-
-for($i = 1; $i<=$N; $i++){
-    list($a,$b) = [$b + $a, $a];
+foreach($num as $v){
+    if ($v % 2 == 1)
+    {
+        $odd++;
+    }
 }
 
-echo ("$a $b");
+if($odd == 0){
+    echo $all;
+}else{
+    echo floor(($all - $odd) / ($odd * 2)) * 2 + 1;
+}

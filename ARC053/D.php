@@ -1,7 +1,10 @@
 <?php
 $N = trim(fgets(STDIN));
-$a=[];
-for($i = 0; $i <= $N - 1; $i++){
-    $a[] = trim(fgets(STDIN));
-}
+
+$a = explode(" ", trim(fgets(STDIN)));
+$b = explode(" ", trim(fgets(STDIN)));
+
+$sum
+
+
 
