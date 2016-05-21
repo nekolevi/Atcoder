@@ -80,6 +80,3 @@ function Aconv($a)
     return $b;
 }
 
-
-
-
