@@ -1,5 +1,4 @@
 <?php
-//$start = microtime(true);
 fscanf(STDIN, '%d%d', $H, $W);
 
 $a = [];
@@ -11,17 +10,10 @@ for($i = 0; $i < $H; ++$i) {
     }
 }
 
-//$scanStr = str_repeat('%d',$W);
-//while($a[] = fscanf(STDIN, $scanStr)){}
-
-//echo 'rap1:' . (microtime(true) - $start) . "(s)\n";
-
 $memo = [];
 for($i = 0; $i < $H; ++$i){
     $memo[$i] = array_fill(0, $W, 0);
 }
-
-//echo 'rap2:' . (microtime(true) - $start) . "(s)\n";
 
 function dfs($i, $j){
     global $memo, $a, $H, $W;
@@ -52,5 +44,4 @@ for($i = 0; $i < $H; ++$i){
     }
 }
 
-//echo 'end:' . (microtime(true) - $start) . "(s)\n";
 echo $sum;
