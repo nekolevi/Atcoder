@@ -80,21 +80,6 @@ function Aconv($a)
     return $b;
 }
 
-//$a = Afill(10000, 10000, -1);
-for ($i = 0; $i < 1000; ++$i) {
-    $a[] = array_fill(0, 1000, 0);
-}
-
-eRap();
-//$a = Aconv($a);
-
-
-//foreach($a as $k1 => $v1){
-//    foreach($v1 as $k2 => $v2){
-//        echo "a[$k1][$k2] = $v2 ";
-//    }
-//    echo "\n";
-//}
 
 
 
