@@ -1,5 +1,6 @@
 # Atcoder
-PHPでAtcoderの問題を解いていくレポジトリ
+PHP(7.0)でAtcoderの問題を解いていくレポジトリ
+
 
 例 ABC001のA問題の実行
 
