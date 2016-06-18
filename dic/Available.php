@@ -98,3 +98,76 @@ for($i = 1; $i <= $H; $i++){
     }
     echo "\n";
 }
+
+//配列にいれた結果を出力
+
+foreach($brd as $value){
+    echo implode($value) . "\n";
+}
+
+//ヒープ
+
+$heap = new SplMinHeap;
+
+$heap->insert(2);
+$heap->insert(8);
+$heap->insert(7);
+
+$out = clone $heap;
+
+while($out->valid()){
+    echo $out->extract() . "\n";
+}
+
+$heap = new SplMaxHeap;
+
+$heap->insert(2);
+$heap->insert(8);
+$heap->insert(7);
+
+$out = clone $heap;
+
+while($out->valid()){
+    echo $out->extract() . "\n";
+}
+
+//優先度付きキュー
+
+$pq = new SplPriorityQueue();
+
+$pq->insert('A',2);
+$pq->insert('B',8);
+$pq->insert('C',7);
+
+$out = clone $pq;
+
+while($out->valid()){
+    echo $out->extract() . "\n";
+}
+//優先度付きキュー　昇順
+class AdjustablePriorityQueue extends SplPriorityQueue {
+
+    protected $direction='desc';
+
+    function compare($priority1,$priority2){
+        if($this->direction=='asc') return parent::compare($priority2, $priority1);
+        return parent::compare($priority1,$priority2);
+    }
+
+    function setDirection($direction){
+        $this->direction = $direction;
+    }
+}
+
+$pq = new AdjustablePriorityQueue();
+$pq->setDirection('asc');
+
+$pq->insert('A',2);
+$pq->insert('B',8);
+$pq->insert('C',7);
+
+$out = clone $pq;
+
+while($out->valid()){
+    echo $out->extract() . "\n";
+}

@@ -15,20 +15,24 @@ for ($i = 1; $i <= $H; ++$i) {
 
 for($i = 1; $i <= $H; $i++){
     for($j = 1;$j <= $W; $j++){
+
         if($a[$i][$j] == '#') {
             foreach ($vec as $v) {
                 if (isset($a[$i + $v[0]][$j + $v[1]]) && check($i + $v[0], $j + $v[1]) == true) {
                     $memo[$i + $v[0]][$j + $v[1]] = '#';
-                    break;
-                }
 
-                if ($v == [-1, -1]) {
-                    echo 'impossible';
-                    exit();
+                    continue 2;
                 }
             }
+            echo 'impossible';
+            exit;
         }
     }
+}
+
+echo "possible\n";
+foreach($memo as $value){
+    echo implode($value) . "\n";
 }
 
 function check($i, $j){
@@ -42,7 +46,3 @@ function check($i, $j){
     return true;
 }
 
-echo "possible\n";
-foreach($memo as $value){
-    echo implode($value) . "\n";
-}
