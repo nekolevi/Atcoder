@@ -105,8 +105,7 @@ foreach($brd as $value){
     echo implode($value) . "\n";
 }
 
-//ヒープ
-
+//昇順ヒープ
 $heap = new SplMinHeap;
 
 $heap->insert(2);
@@ -119,6 +118,7 @@ while($out->valid()){
     echo $out->extract() . "\n";
 }
 
+//降順ヒープ
 $heap = new SplMaxHeap;
 
 $heap->insert(2);
@@ -132,7 +132,6 @@ while($out->valid()){
 }
 
 //優先度付きキュー
-
 $pq = new SplPriorityQueue();
 
 $pq->insert('A',2);
@@ -144,13 +143,16 @@ $out = clone $pq;
 while($out->valid()){
     echo $out->extract() . "\n";
 }
-//優先度付きキュー　昇順
+
+//優先度付きキュー拡張
 class AdjustablePriorityQueue extends SplPriorityQueue {
 
     protected $direction='desc';
 
     function compare($priority1,$priority2){
-        if($this->direction=='asc') return parent::compare($priority2, $priority1);
+        if($this->direction=='asc') {
+            return parent::compare($priority2, $priority1);
+        }
         return parent::compare($priority1,$priority2);
     }
 
