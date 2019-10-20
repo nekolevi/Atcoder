@@ -1,5 +1,8 @@
 <?php
-$a =trim(fgets(STDIN));
-list($b,$c) = explode(" ", trim(fgets(STDIN)));
-$s =trim(fgets(STDIN));
-echo ($a + $b + $c) . " " . $s . "\n";
+$n = trim(fgets(STDIN));
+$d=[];
+for ($i=0;$i <= $n - 1; $i++){
+    $d[] = trim(fgets(STDIN));
+}
+
+echo count(array_unique($d)) . "\n";

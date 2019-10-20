@@ -1,27 +1,37 @@
 <?php
-$n = trim(fgets(STDIN));
-$s = trim(fgets(STDIN));
+list($N, $K) = explode(" ", trim(fgets(STDIN)));
 
-function ds($b, $n){
-    if($n < $b){
-        return $n;
-    }else{
-        return ds($b, floor($n / $b)) + ($n % $b);
+While ($str = trim(fgets(STDIN))) {
+    list($a, $b, $c) = explode(" ", $str);
+
+    $E[$a][] = [$b, $c];
+
+}
+
+$paths = [[[1], 0]];
+$w = [];
+
+for ($i = 1; $i <= $N; $i++){
+    var_dump($paths);
+    foreach ($paths as $key => $path) {
+        $v = $path[0][count($path[0]) - 1];
+
+        foreach (isset($E[$v]) ? $E[$v] : [] as $e) {
+
+            if (in_array($e[0], $path[0])) {
+                echo 'inf';
+                exit;
+            } else {
+                $tasu = [$path[0] + [$e[0]],$path[1] + $e[1]] ;
+
+                if ($e[0] == $N) {
+                    $w[] = $tasu[1];
+                }
+
+                $paths = $paths + $tasu;
+            }
+        }
     }
 }
 
-$test = 12345;
-
-$max = 0; $min = ds(2, $test);
-for ($i = 2; $i <= 12345; $i++){
-    $k = ds($i, $test);
-    if ($k > $max){
-        $max = $k;
-    }
-    if($k < $min){
-        $min = $k;
-    }
-}
-
-echo $max . ' ' . $min;
-
+echo max($w);

@@ -1,27 +1,21 @@
 <?php
-list($N, $K) = explode(" ", trim(fgets(STDIN)));
+list($N, $M) = explode(" ", trim(fgets(STDIN)));
+$A = explode(" ", trim(fgets(STDIN)));
 
-While ($str = trim(fgets(STDIN))) {
-    $td = explode(" ", $str);
+$m = [0, 2, 5, 5, 4, 5, 6, 3, 7, 6];
+$use = [];
 
+$tmpN = $N;
+$tmpM = $M;
+
+for ($i = 1; $i <= 9; $i++) {
+        $use[$i] = $m[$i];
 }
 
-function solver($n, $k, $s)
-{
-    global $td;
+$use = array_flip($use);
+ksort($use);
 
-    if ($n == 0 || $s == 0) {
-        return [0, $td];
-    }
+foreach ($use as $key => $val){
 
-    $res = solver($n - 1, $k, $s - 1);
 
-}
-
-$max = 0;
-for ($i = 1; $i <= $S; $i++) {
-    $tmp = solver($N, $K, $i);
-    if ($max < $tmp) {
-        $max = $tmp;
-    }
 }

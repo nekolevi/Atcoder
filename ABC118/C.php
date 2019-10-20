@@ -1,22 +1,32 @@
 <?php
-list($N, $K) = explode(" ", trim(fgets(STDIN)));
+error_reporting(0);
 
-$count = [];
-While ($str = trim(fgets(STDIN))) {
-    list($a, $b) = explode(" ", $str);
+$N = trim(fgets(STDIN));
+$A = explode(" ", trim(fgets(STDIN)));
 
-    $count[$a] = isset($count[$a]) ? $count[$a] + $b : $b;
-}
+$min = min($A);
+$tmp = $A;
 
-ksort($count);
-
-$sum = 0;
-foreach ($count as $key => $val) {
-    $sum += $val;
-    if ($K <= $sum) {
-        echo $key;
-        break;
+while (true) {
+    $tmp2 = [];
+    foreach ($tmp as $t) {
+        if ($t % $min != 0) {
+            $tmp2[] = $t % $min;
+        }
     }
+
+    $tmp2[] = $min;
+
+    $chk = min($tmp2);
+
+    if ($chk == $min) {
+        echo $min . "\n";
+        break;
+    } else {
+        $tmp = $tmp2;
+        $min = $chk;
+    }
+
 }
 
 

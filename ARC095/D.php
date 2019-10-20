@@ -1,51 +1,35 @@
 <?php
-list($a, $b) = explode(" ", trim(fgets(STDIN)));
+list($n, $c) = explode(" ", trim(fgets(STDIN)));
 
-$da = floor(($a - 1) / 33) + 1;
-$ma = ($a - 1) % 33;
-
-$db = floor(($b - 1) / 33) + 1;
-$md = ($b - 1) % 33;
-
-$h = ($da + $db) * 3;
-$w = 100;
-
-$b = [];
-
-for ($i = 1; $i <= $da; $i++) {
-    $b[3 * $i - 2] = array_fill(0, 100, '#');
-    $b[3 * $i - 1] = array_fill(0, 100, '#');
-    $b[3 * $i - 0] = array_fill(0, 100, '#');
-
-    if ($i != $da) {
-        for ($j = 1; $j <= 33; $j++) {
-            $b[3 * $i - 1][3 * $j - 1] = '.';
-        }
-    } else {
-        for ($j = 1; $j <= $ma; $j++) {
-            $b[3 * $i - 1][3 * $j - 1] = '.';
-        }
-    }
+While ($str = trim(fgets(STDIN))) {
+    list($x, $v) = explode(" ", $str);
+    $X[] = $x;
+    $rX[] = $c - $x;
+    $V[] = $v;
 }
 
-for ($i = 1; $i <= $db; $i++) {
-    $b[3 * $da + 3 * $i - 2] = array_fill(0, 100, '.');
-    $b[3 * $da + 3 * $i - 1] = array_fill(0, 100, '.');
-    $b[3 * $da + 3 * $i - 0] = array_fill(0, 100, '.');
+$rV = array_reverse($V);
 
-    if ($i != $db) {
-        for ($j = 1; $j <= 33; $j++) {
-            $b[3 * $da + 3 * $i - 1][3 * $j - 1] = '#';
-        }
-    } else {
-        for ($j = 1; $j <= $md; $j++) {
-            $b[3 * $da + 3 * $i - 1][3 * $j - 1] = '#';
-        }
-    }
+$A[0] = (int)$V[0];
+for ($i = 1; $i <= $n - 1; $i++) {
+
+    $A[$i] = $V[$i] + $A[$i - 1];
 }
 
-echo $h . " " . $w . "\n";
-foreach ($b as $v) {
-    echo(implode($v) . "\n");
+$B[0] = (int)$rV[0];
+for ($i = 1; $i <= $n - 1; $i++) {
 
+    $B[$i] = $rV[$i] + $B[$i - 1];
 }
+
+var_dump($A);
+var_dump($B);
+
+for ($i = 1; $i <= $n - 1; $i++) {
+
+    $C[$i] = $A[$i] - $X[$i];
+    $D[$i] = $A[$i] - 2*$X[$i];
+    $E[$i] = $B[$i] - $rX[$i];
+    $F[$i] = $B[$i] - 2*$rX[$i];
+}
+

@@ -1,34 +1,19 @@
 <?php
-error_reporting(0);
+$S = str_split(trim(fgets(STDIN)));
 
-$N = trim(fgets(STDIN));
-$A = explode(" ", trim(fgets(STDIN)));
+$a = [];
+$b = [];
 
-$min = min($A);
-$tmp = $A;
+$cnt = count($S);
 
-while (true) {
-    $tmp2 = [];
-    foreach ($tmp as $t) {
-        if ($t % $min != 0) {
-            $tmp2[] = $t % $min;
-        }
-    }
-
-    $tmp2[] = $min;
-
-    $chk = min($tmp2);
-
-    if ($chk == $min) {
-        echo $min . "\n";
-        break;
+for ($i = 0; $i <= $cnt - 1; $i++) {
+    if ($i % 2 == 0) {
+        $a[] = '1';
+        $b[] = '0';
     } else {
-        $tmp = $tmp2;
-        $min = $chk;
+        $a[] = '0';
+        $b[] = '1';
     }
-
 }
 
-
-
-
+echo min(count(array_diff_assoc($S, $a)), count(array_diff_assoc($S, $b))) . "\n";

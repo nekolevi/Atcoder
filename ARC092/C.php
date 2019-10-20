@@ -1,28 +1,27 @@
 <?php
-$n =trim(fgets(STDIN));
-$a = explode(" ", trim(fgets(STDIN)));
-$idx = $n;
-$down = true;
+$N = trim(fgets(STDIN));
+$p = [];
+for ($i = 0; $i <= $N * 2 - 1; $i++) {
+    $p[] = explode(' ', trim(fgets(STDIN))) + [2 => $i < $N ? 'r' : 'b'];
+}
+array_multisort(array_column($p, 0), SORT_ASC, $p);
+$rs = [];
+$count = 0;
 
-for ($i = 1; $i <= $n; $i++) {
-    $ans[] = $a[$idx - 1];
-    if ($idx > 3 && $down) {
-        $idx = $idx - 2;
-    } elseif ($down) {
-        $down = false;
-        if ($idx == 3) {
-            $next = 2;
-        } else {
-            $next = 3;
+for ($i = 0; $i <= 2 * $N - 1; $i++) {
+    if ($p[$i][2] == 'r') {
+        $rs[] = $p[$i];
+    }
+    if ($p[$i][2] == 'b') {
+        array_multisort(array_column($rs, 1), SORT_DESC, $rs);
+        foreach ($rs as $k => $r){
+            if ($p[$i][1] > $r[1]) {
+                $count++;
+                unset($rs[$k]);
+                break;
+            }
         }
-        $idx = 1;
-    } elseif (isset($next)) {
-        $idx = $next;
-        unset($next);
-    } else {
-        $idx = $idx + 2;
     }
 }
 
-echo implode(" ", $ans);
-
+echo $count;

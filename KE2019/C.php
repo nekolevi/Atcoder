@@ -1,18 +1,44 @@
 <?php
-list($a, $b, $c, $x, $y) = explode(" ", trim(fgets(STDIN)));
+$n = trim(fgets(STDIN));
+$a = explode(" ", trim(fgets(STDIN)));
+$b = explode(" ", trim(fgets(STDIN)));
 
-$case1 = $a * $x + $b * $y;
+$d = [];
 
-if ($x <= $y) {
-    $case2 = $b * ($y - $x) + $c * 2 * $x;
-} else {
-    $case2 = $a * ($x - $y) + $c * 2 * $y;
+foreach ($a as $k => $v){
+    $d[$k] = $a[$k] - $b[$k];
 }
 
-if ($x <= $y) {
-    $case3 = $c * 2 * $y;
-} else {
-    $case3 = $c * 2 * $x;
+$plus = [];
+$minus = [];
+
+foreach ($d as $i) {
+    if ($i > 0) {
+        $plus[] = $i;
+    } elseif ($i < 0) {
+        $minus[] = $i;
+    }
 }
 
-echo min($case1, $case2, $case3);
+if (array_sum($d) < 0) {
+    echo -1 . "\n";
+} elseif (count($minus) == 0) {
+    echo 0 .  "\n";
+} else {
+    arsort($plus);
+
+    $sum_minus = array_sum($minus);
+
+    $s = 0;
+    $cnt = 0;
+    foreach ($plus as $p) {
+        $cnt++;
+        $s += $p;
+
+        if ($s >= -$sum_minus) {
+            break;
+        }
+    }
+
+    echo count($minus) + $cnt . "\n";
+}

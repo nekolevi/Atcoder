@@ -1,13 +1,8 @@
 <?php
-$N = trim(fgets(STDIN));
-$K = trim(fgets(STDIN));
-$X = trim(fgets(STDIN));
-$Y = trim(fgets(STDIN));
+list($A, $B, $C) = explode(" ", trim(fgets(STDIN)));
 
-if($N > $K){
-    $s = ($N - $K) * $Y + $K * $X;
-}else{
-    $s = $N * $X;
+if ($A <= $C && $C <= $B) {
+    echo "Yes";
+} else {
+    echo "No";
 }
-
-echo $s;

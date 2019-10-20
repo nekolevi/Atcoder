@@ -1,14 +1,28 @@
 <?php
-list($H, $W) = explode(" ", trim(fgets(STDIN)));
+$n =trim(fgets(STDIN));
+$a = explode(" ", trim(fgets(STDIN)));
+$idx = $n;
+$down = true;
 
-if($H % 3 == 0 || $W % 3 == 0){
-    echo 0;
-} else {
-    $L = max($H,$W);
-    $S = min($H,$W);
-
-    $BIG = ceil($L / 3)  * $S;
-    $SMALL = floor($S / 2) * ($L - ceil($L / 3));
-
-    echo $BIG - $SMALL;
+for ($i = 1; $i <= $n; $i++) {
+    $ans[] = $a[$idx - 1];
+    if ($idx > 3 && $down) {
+        $idx = $idx - 2;
+    } elseif ($down) {
+        $down = false;
+        if ($idx == 3) {
+            $next = 2;
+        } else {
+            $next = 3;
+        }
+        $idx = 1;
+    } elseif (isset($next)) {
+        $idx = $next;
+        unset($next);
+    } else {
+        $idx = $idx + 2;
+    }
 }
+
+echo implode(" ", $ans);
+

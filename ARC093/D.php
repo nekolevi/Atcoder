@@ -1,31 +1,51 @@
 <?php
-$N = trim(fgets(STDIN));
-$a = explode(" ", trim(fgets(STDIN)));
-$b = explode(" ", trim(fgets(STDIN)));
+list($a, $b) = explode(" ", trim(fgets(STDIN)));
 
-$ans = 0;
-for ($i = 0; $i <= 29; $i++) {
-    $T = pow(2, $i);
+$da = floor(($a - 1) / 33) + 1;
+$ma = ($a - 1) % 33;
 
-    for ($j = 0; $j < $N; $j++) {
-        $dp[$j] = $b[$j] % $T;
-    }
-    sort(dp, dp+n);
-    int ret = 0, val, x, y, cnt = 0;
-    for (int i = 0; i < n; i++) {
-        val = a[i] % base;
-        x = max(0, (1<<s) - val);
-        y = base - 1 - val;
-        if (x <= y) {
-            cnt += upper_bound(dp, dp+n, y) - lower_bound(dp, dp+n, x);
+$db = floor(($b - 1) / 33) + 1;
+$md = ($b - 1) % 33;
+
+$h = ($da + $db) * 3;
+$w = 100;
+
+$b = [];
+
+for ($i = 1; $i <= $da; $i++) {
+    $b[3 * $i - 2] = array_fill(0, 100, '#');
+    $b[3 * $i - 1] = array_fill(0, 100, '#');
+    $b[3 * $i - 0] = array_fill(0, 100, '#');
+
+    if ($i != $da) {
+        for ($j = 1; $j <= 33; $j++) {
+            $b[3 * $i - 1][3 * $j - 1] = '.';
         }
-        x = (base+(1<<s)) - val;
-        y = (1<<(s+2))-1 - val;
-        if (x <= y) {
-            cnt += upper_bound(dp, dp+n, y) - lower_bound(dp, dp+n, x);
+    } else {
+        for ($j = 1; $j <= $ma; $j++) {
+            $b[3 * $i - 1][3 * $j - 1] = '.';
         }
-        cnt = cnt % 2;
     }
+}
 
+for ($i = 1; $i <= $db; $i++) {
+    $b[3 * $da + 3 * $i - 2] = array_fill(0, 100, '.');
+    $b[3 * $da + 3 * $i - 1] = array_fill(0, 100, '.');
+    $b[3 * $da + 3 * $i - 0] = array_fill(0, 100, '.');
+
+    if ($i != $db) {
+        for ($j = 1; $j <= 33; $j++) {
+            $b[3 * $da + 3 * $i - 1][3 * $j - 1] = '#';
+        }
+    } else {
+        for ($j = 1; $j <= $md; $j++) {
+            $b[3 * $da + 3 * $i - 1][3 * $j - 1] = '#';
+        }
+    }
+}
+
+echo $h . " " . $w . "\n";
+foreach ($b as $v) {
+    echo(implode($v) . "\n");
 
 }

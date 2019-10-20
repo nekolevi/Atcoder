@@ -1,16 +1,17 @@
 <?php
-list($N, $M) = explode(" ", trim(fgets(STDIN)));
+$N = trim(fgets(STDIN));
+$H = explode(" ", trim(fgets(STDIN)));
 
-$s = [];
-for ($i = 1; $i <= $N; $i++) {
-    $tmp = explode(" ", trim(fgets(STDIN)));
-    unset($tmp[0]);
-    if ($i == 1) {
-        $s = $tmp;
-    } else {
-        $s = array_intersect($s, $tmp);
+$ans = 0;
+$max = 0;
+
+for ($i = 0; $i <= $N - 1; $i++) {
+    if ($H[$i] > $max) {
+        $max = $H[$i];
     }
-
+    if ($max <= $H[$i]) {
+        $ans++;
+    }
 }
 
-echo count($s) . "\n";
+echo $ans . "\n";

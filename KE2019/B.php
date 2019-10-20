@@ -1,18 +1,17 @@
 <?php
-list($a, $b, $c, $x, $y) = explode(" ", trim(fgets(STDIN)));
+$S = trim(fgets(STDIN));
 
-$case1 = $a * $x + $b * $y;
+if (preg_match("/^.*keyence$/",$S)
+    || preg_match("/^k.*eyence$/",$S)
+    || preg_match("/^ke.*yence$/",$S)
+    || preg_match("/^key.*ence$/",$S)
+    || preg_match("/^keye.*nce$/",$S)
+    || preg_match("/^keyen.*ce$/",$S)
+    || preg_match("/^keyenc.*e$/",$S)
+    || preg_match("/^keyence.*$/",$S)
 
-if ($x <= $y) {
-    $case2 = $b * ($y - $x) + $c * 2 * $x;
-} else {
-    $case2 = $a * ($x - $y) + $c * 2 * $y;
+){
+    echo ("YES") . "\n";
+}else{
+    echo("NO") . "\n";
 }
-
-if ($x <= $y) {
-    $case3 = $c * 2 * $y;
-} else {
-    $case3 = $c * 2 * $x;
-}
-
-echo min($case1, $case2, $case3);

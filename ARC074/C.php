@@ -1,15 +1,14 @@
 <?php
-list($N, $T) = explode(" ", trim(fgets(STDIN)));
-$t = explode(" ", trim(fgets(STDIN)));
+list($H, $W) = explode(" ", trim(fgets(STDIN)));
 
-$X = 0;
+if($H % 3 == 0 || $W % 3 == 0){
+    echo 0;
+} else {
+    $L = max($H,$W);
+    $S = min($H,$W);
 
-for ($i = 0; $i <= $N - 1; $i++) {
-    if ($i == 0 || $t[$i - 1] + $T <= $t[$i]) {
-        $X += $T;
-    } else {
-        $X +=  ($t[$i] - $t[$i - 1]);
-    }
+    $BIG = ceil($L / 3)  * $S;
+    $SMALL = floor($S / 2) * ($L - ceil($L / 3));
+
+    echo $BIG - $SMALL;
 }
-
-echo $X;

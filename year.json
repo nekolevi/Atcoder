@@ -1,0 +1,19 @@
+{
+  "periods" : [
+    {
+      "start":1926,
+      "jName":"昭和",
+      "eName":"showa"
+    },
+    {
+      "start":1989,
+      "jName":"平成",
+      "eName":"heisei"
+    },
+    {
+      "start":2019,
+      "jName":"令和",
+      "eName":"reiwa"
+    }
+  ]
+}

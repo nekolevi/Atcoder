@@ -1,18 +1,11 @@
 <?php
-list($a, $b, $c, $x, $y) = explode(" ", trim(fgets(STDIN)));
+$n = explode(" ", trim(fgets(STDIN)));
 
-$case1 = $a * $x + $b * $y;
+asort($n);
+$nn = array_values($n);
 
-if ($x <= $y) {
-    $case2 = $b * ($y - $x) + $c * 2 * $x;
+if ($nn[0] == 1 && $nn[1] == 4 && $nn[2] == 7 && $nn[3] == 9) {
+    echo "YES\n";
 } else {
-    $case2 = $a * ($x - $y) + $c * 2 * $y;
+    echo "NO\n";
 }
-
-if ($x <= $y) {
-    $case3 = $c * 2 * $y;
-} else {
-    $case3 = $c * 2 * $x;
-}
-
-echo min($case1, $case2, $case3);

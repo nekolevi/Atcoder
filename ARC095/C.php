@@ -1,24 +1,41 @@
 <?php
-$N = trim(fgets(STDIN));
+$n = trim(fgets(STDIN));
 $a = explode(" ", trim(fgets(STDIN)));
+$b = explode(" ", trim(fgets(STDIN)));
 
-$p = 0;
-$sum = 0;
-for ($i = 0; $i <= $N - 1; $i++) {
-    $sum += abs($a[$i] - $p);
-    $p = $a[$i];
-}
+$d = array_diff($a, $b);
 
-$sum += abs($a[$N - 1]);
 
-for ($i = 0; $i <= $N - 1; $i++) {
-    $l = $a[$i - 1] ?? 0;
-    $h = $a[$i + 1] ?? 0;
+$plus = [];
+$minus = [];
 
-    if (($l <= $a[$i] && $a[$i] <= $h) || ($h <= $a[$i] && $a[$i] <= $l)) {
-        echo($sum . "\n");
-    } else {
-        echo($sum - min(abs($a[$i] - $l), abs($a[$i] - $h)) * 2 . "\n");
+foreach ($d as $i) {
+    if ($i > 0) {
+        $plus[] = $i;
+    } elseif ($i < 0) {
+        $minus = $i;
     }
 }
 
+if (array_sum($d) < 0) {
+    echo -1;
+} elseif (count($minus) == 0) {
+    echo 0;
+} else {
+    arsort($plus);
+
+    $sum_minus = array_sum($minus);
+
+    $s = 0;
+    $count = 0;
+    foreach ($plus as $p) {
+        $count++;
+        $s += $p;
+
+        if ($s > $sum_minus) {
+            break;
+        }
+    }
+
+    echo count($minus) + $count;
+}

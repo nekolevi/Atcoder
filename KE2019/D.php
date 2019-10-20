@@ -1,5 +1,8 @@
 <?php
-list($n, $c) = explode(" ", trim(fgets(STDIN)));
+list($n, $m) = explode(" ", trim(fgets(STDIN)));
+$a = explode(" ", trim(fgets(STDIN)));
+$b = explode(" ", trim(fgets(STDIN)));
+
 
 While ($str = trim(fgets(STDIN))) {
     list($x, $v) = explode(" ", $str);

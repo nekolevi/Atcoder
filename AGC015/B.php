@@ -1,29 +1,13 @@
 <?php
-list($N, $M) = explode(" ", trim(fgets(STDIN)));
-
-$w = array_fill(1, $N + 1, 0);
-
-While ($str = trim(fgets(STDIN))) {
-    list($a, $b) = explode(" ", $str);
-
-    $M = max($a, $b);
-    $m = min($a, $b);
-
-    $w[$m]++;
-    $w[$M]--;
-}
-
-$flg = true;
-
-for ($i = 1; $i <= $N; $i++) {
-    if ($w[$i] % 2 != 0) {
-        $flg = false;
-        break;
+$S = str_split(trim(fgets(STDIN)));
+$count = count($S);
+$sum = 0;
+for ($i = 0; $i < $count; $i++) {
+    if ($S[$i] == 'U') {
+        $sum += ($count - $i - 1) + 2 * $i;
+    } else {
+        $sum += 2 * ($count - $i - 1) + $i;
     }
-
-    $w[$i + 1] += $w[$i];
 }
 
-echo $flg ? 'YES' : 'NO';
-
-
+echo $sum;

@@ -1,14 +1,16 @@
 <?php
 list($N, $M) = explode(" ", trim(fgets(STDIN)));
 
-$v = [];
-While ($str = trim(fgets(STDIN))) {
-    $v = array_merge($v, explode(" ", $str));
+$s = [];
+for ($i = 1; $i <= $N; $i++) {
+    $tmp = explode(" ", trim(fgets(STDIN)));
+    unset($tmp[0]);
+    if ($i == 1) {
+        $s = $tmp;
+    } else {
+        $s = array_intersect($s, $tmp);
+    }
+
 }
 
-$cnt = array_count_values($v);
-ksort($cnt);
-
-for($i=1; $i <= $N; $i++){
-    echo (isset($cnt[$i]) ? $cnt[$i] : 0) . "\n";
-}
+echo count($s) . "\n";

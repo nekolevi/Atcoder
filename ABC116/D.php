@@ -2,36 +2,26 @@
 list($N, $K) = explode(" ", trim(fgets(STDIN)));
 
 While ($str = trim(fgets(STDIN))) {
-    list($a, $b, $c) = explode(" ", $str);
-
-    $E[$a][] = [$b, $c];
+    $td = explode(" ", $str);
 
 }
 
-$paths = [[[1], 0]];
-$w = [];
+function solver($n, $k, $s)
+{
+    global $td;
 
-for ($i = 1; $i <= $N; $i++){
-    var_dump($paths);
-    foreach ($paths as $key => $path) {
-        $v = $path[0][count($path[0]) - 1];
+    if ($n == 0 || $s == 0) {
+        return [0, $td];
+    }
 
-        foreach (isset($E[$v]) ? $E[$v] : [] as $e) {
+    $res = solver($n - 1, $k, $s - 1);
 
-            if (in_array($e[0], $path[0])) {
-                echo 'inf';
-                exit;
-            } else {
-                $tasu = [$path[0] + [$e[0]],$path[1] + $e[1]] ;
+}
 
-                if ($e[0] == $N) {
-                    $w[] = $tasu[1];
-                }
-
-                $paths = $paths + $tasu;
-            }
-        }
+$max = 0;
+for ($i = 1; $i <= $S; $i++) {
+    $tmp = solver($N, $K, $i);
+    if ($max < $tmp) {
+        $max = $tmp;
     }
 }
-
-echo max($w);

@@ -1,27 +1,24 @@
 <?php
 $N = trim(fgets(STDIN));
-$p = [];
-for ($i = 0; $i <= $N * 2 - 1; $i++) {
-    $p[] = explode(' ', trim(fgets(STDIN))) + [2 => $i < $N ? 'r' : 'b'];
-}
-array_multisort(array_column($p, 0), SORT_ASC, $p);
-$rs = [];
-$count = 0;
+$a = explode(" ", trim(fgets(STDIN)));
 
-for ($i = 0; $i <= 2 * $N - 1; $i++) {
-    if ($p[$i][2] == 'r') {
-        $rs[] = $p[$i];
-    }
-    if ($p[$i][2] == 'b') {
-        array_multisort(array_column($rs, 1), SORT_DESC, $rs);
-        foreach ($rs as $k => $r){
-            if ($p[$i][1] > $r[1]) {
-                $count++;
-                unset($rs[$k]);
-                break;
-            }
-        }
+$p = 0;
+$sum = 0;
+for ($i = 0; $i <= $N - 1; $i++) {
+    $sum += abs($a[$i] - $p);
+    $p = $a[$i];
+}
+
+$sum += abs($a[$N - 1]);
+
+for ($i = 0; $i <= $N - 1; $i++) {
+    $l = $a[$i - 1] ?? 0;
+    $h = $a[$i + 1] ?? 0;
+
+    if (($l <= $a[$i] && $a[$i] <= $h) || ($h <= $a[$i] && $a[$i] <= $l)) {
+        echo($sum . "\n");
+    } else {
+        echo($sum - min(abs($a[$i] - $l), abs($a[$i] - $h)) * 2 . "\n");
     }
 }
 
-echo $count;

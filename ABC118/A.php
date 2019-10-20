@@ -1,8 +1,8 @@
 <?php
-list($A, $B, $C) = explode(" ", trim(fgets(STDIN)));
+list($A, $B) = explode(" ", trim(fgets(STDIN)));
 
-if ($A <= $C && $C <= $B) {
-    echo "Yes";
+if ($B % $A == 0) {
+    echo $A + $B . "\n";
 } else {
-    echo "No";
+    echo $B - $A . "\n";
 }

@@ -1,13 +1,14 @@
 <?php
-$w = str_split(trim(fgets(STDIN)));
-$count = array_count_values($w);
+list($N, $M) = explode(" ", trim(fgets(STDIN)));
 
-foreach ($count as $cnt) {
-    if ($cnt % 2 != 0) {
-        echo 'No';
-        die;
-    } else {
-
-    }
+$v = [];
+While ($str = trim(fgets(STDIN))) {
+    $v = array_merge($v, explode(" ", $str));
 }
-echo 'Yes';
+
+$cnt = array_count_values($v);
+ksort($cnt);
+
+for($i=1; $i <= $N; $i++){
+    echo (isset($cnt[$i]) ? $cnt[$i] : 0) . "\n";
+}

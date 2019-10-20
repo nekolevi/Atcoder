@@ -1,11 +1,9 @@
 <?php
-list($N, $K) = explode(" ", trim(fgets(STDIN)));
+list($N, $Q) = explode(" ", trim(fgets(STDIN)));
+$s = trim(fgets(STDIN));
 
-$count = [];
 While ($str = trim(fgets(STDIN))) {
-    list($a, $b) = explode(" ", $str);
-
-    $count[$a] = isset($count[$a]) ? $count[$a] + $b : $b;
+    list($t, $d) = explode(" ", trim(fgets(STDIN)));
 }
 
 ksort($count);
